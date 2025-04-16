@@ -1,0 +1,72 @@
+﻿@using Dominio.Entidades
+
+<h1>Animales</h1>
+
+@if (@ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+
+
+<nav aria-label="breadcrumb">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li>
+            <a class="link-secondary" asp-action="AltaBovino">Alta Bovino</a>
+        </li>
+        <li>
+            <a class="link-secondary" asp-action="VerPotreros">Ver Potreros</a>
+        </li>
+    </ul>
+</nav>
+
+<form action="/Animal/FiltroAnimales">
+    <input type="number" name="peso" placeholder="Peso" />
+    <input type="text" name="tipo" placeholder="Tipo" />
+    <button type="submit">Buscar</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Caravana</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Costo Venta</th>
+            <th scope="col">Cant. Vacunas</th>
+            <th scope="col">Vacunas</th>
+            <th scope="col">Asignar potrero</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Animal item in ViewBag.Animales)
+        {
+            if (item is Bovino)
+            {
+                <tr>
+                    <td>@item.Caravana</td>
+                    <td>@item.Peso</td>
+                    <td>@item.Sexo</td>
+                    <td>@item.CostoAdquisicion</td>
+                    <td>@item.VacunasRecibidas.Count()</td>
+                    <td><a href="/Animal/VerVacunas?caravana=@item.Caravana">Vacunas</a></td>
+                    <td><a href="/Animal/AsignarAnimal?caravana=@item.Caravana">Asignar potrero</a></td>
+                </tr>
+            }
+            if (item is Ovino)
+            {
+                <tr>
+                    <td>@item.Caravana</td>
+                    <td>@item.Peso</td>
+                    <td>@item.Sexo</td>
+                    <td>@item.CostoAdquisicion</td>
+                    <td>@item.VacunasRecibidas.Count()</td>
+                    <td><a href="/Animal/VerVacunas?caravana=@item.Caravana">Vacunas</a></td>
+                    <td><a href="/Animal/AsignarAnimal?caravana=@item.Caravana">Asignar potrero</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

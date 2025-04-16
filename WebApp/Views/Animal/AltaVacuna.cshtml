@@ -1,0 +1,40 @@
+﻿@using Dominio.Entidades
+@model VacunaRecibida
+
+@if (@ViewBag.Mensaje != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<nav aria-label="breadcrumb">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li><a class="link-secondary" href="/empleado/index">Inicio</a></li>
+    </ul>
+</nav>
+
+<form method="post">
+
+    <div class="mb-3">
+        <label for="TipoVacuna" class="form-label">Tipo de Vacuna</label> 
+        <select name="TipoVacuna">
+            @foreach (Vacuna item in ViewBag.Vacunas)
+            {
+                <option value="@item.Nombre">@item.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="Fecha" class="form-label">Fecha Realizada</label>
+        <input type="date" class="form-control" name="Fecha" placeholder="Fecha Dada" value="@Model.Fecha" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Vencimiento" class="form-label">Fecha Vencimiento</label>
+        <input type="date" class="form-control" name="Vencimiento" placeholder="Fecha Vencimiento" value="@Model.Vencimiento" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Alta</button>
+</form>

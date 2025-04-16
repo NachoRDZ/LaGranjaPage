@@ -1,0 +1,35 @@
+﻿@using Dominio.Entidades
+
+<h1>Animales</h1>
+
+@if (@ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Caravana</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Sexo</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Animal item in ViewBag.Animales)
+        {
+            if (item.Estado == "Libre")
+            {
+                <tr>
+                    <td>@item.Caravana</td>
+                    <td>@item.Peso</td>
+                    <td>@item.Sexo</td>
+                    <td><a href="/Animal/AsignarAnimal?caravana=@item.Caravana">Asignar a potrero</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

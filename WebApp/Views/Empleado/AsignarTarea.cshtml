@@ -1,0 +1,35 @@
+﻿@using Dominio.Entidades
+
+@if (@ViewBag.Mensaje != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<nav aria-label="breadcrumb">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li><a class="link-secondary" href="/empleado/index">Inicio</a></li>
+    </ul>
+</nav>
+
+<h1>Asignar una nueva tarea</h1>
+
+<form method="post">
+    <label for="email" class="form-label">Email del peon</label>
+    <input type="email" class="form-control" id="email" name="email">
+
+    <label for="descripcion" class="form-label">Descripcion</label>
+    <input name="descripcion" type="text" id="descripcion" class="form-control">
+
+    <label for="fechaRealizacion" class="form-label">Fecha de realizacion</label>
+    <input name="fechaRealizacion" type="date" class="form-control" id="fechaRealizacion">
+
+    <label for="fechaCierre" class="form-label">Fecha de cierre</label>
+    <input name="fechaCierre" type="date" class="form-control" id="fechaCierre">
+
+    <label for="comentario" class="form-label">Comentario</label>
+    <input name="comentario" type="text" class="form-control" id="comentario">
+
+    <button class="btn btn-outline-secondary" type="submit">Agregar</button>
+</form>

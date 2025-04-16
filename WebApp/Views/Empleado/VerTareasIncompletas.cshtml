@@ -1,0 +1,63 @@
+﻿@using Dominio.Entidades
+
+@if (!string.IsNullOrEmpty(ViewBag.Mensaje))
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<nav aria-label="breadcrumb">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li><a class="link-secondary" href="/empleado/index">Inicio</a></li>
+    </ul>
+</nav>
+
+<h2>@Context.Session.GetString("nombre")</h2>
+<h3>Tareas incompletas</h3>
+<br>
+
+
+@if (ViewBag.TareasIncompletas.Count > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Descripcion</th>
+                <th>Fecha de realizacion</th>
+                <th>Tarea completa</th>
+                <th>Fecha de cierre</th>
+                <th>Comentario</th>
+                <th>Completar tarea</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (Tarea tarea in ViewBag.TareasIncompletas)
+            {
+                <tr>
+                    <td>@tarea.Descripcion</td>
+                    <td>@tarea.FechaRealizacion.ToShortDateString()</td>
+                    <td>@tarea.TareaCompleta</td>
+                    <td>@tarea.FechaCierre.ToShortDateString()</td>
+                    <td>@tarea.Comentario</td>
+                    <td>
+                        <form action="/Empleado/CompletarTarea" method="post">
+                            <input type="hidden" name="idTarea" value="@tarea.Id">
+                            <label for="comentario" class="form-label">Comentario de cierre</label>
+                            <input type="text" class="form-control" name="comentario">
+                            <button type="submit" class="btn btn-success">Completar</button>
+                        </form>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>Este peón no tiene tareas pendientes</h2>
+}
+
+

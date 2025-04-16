@@ -1,0 +1,76 @@
+﻿@using Dominio.Entidades
+@model Bovino
+
+<nav aria-label="breadcrumb">
+    <p>
+        <a class="link-secondary" href="/animal/index">Inicio</a>
+    </p>
+</nav>
+
+@if (@ViewBag.Mensaje != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<form method="post">
+
+    <div class="mb-3">
+        <label for="TipoAlimentacion" class="form-label">Tipo de Alimentacion</label>
+        <input type="text" class="form-control" name="TipoAlimentacion" placeholder="Tipo de Alimentacion" value="@Model.TipoAlimentacion" />
+    </div>
+
+    <div class="mb-3">
+        <label for="PrecioKgEnPie" class="form-label">Precio Kg en Pie</label>
+        <input type="text" class="form-control" name="PrecioKgEnPie" placeholder="Precio Kg en Pie" value="@Model.PrecioKgEnPie" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Caravana" class="form-label">ID de Caravana</label>
+        <input type="text" class="form-control" name="Caravana" placeholder="ID de Caravana" value="@Model.Caravana" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Sexo" class="form-label">Sexo</label>
+        <select class="form-control" name="Sexo" value="@Model.Sexo">
+            <option value="Macho">Macho</option>
+            <option value="Hembra">Hembra</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="Raza" class="form-label">Raza</label>
+        <input type="text" class="form-control" name="Raza" placeholder="Raza" value="@Model.Raza" />
+    </div>
+
+    <div class="mb-3">
+        <label for="FechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+        <input type="date" class="form-control" name="FechaNacimiento" placeholder="Fecha de Nacimiento" value="@Model.FechaNacimiento" />
+    </div>
+
+    <div class="mb-3">
+        <label for="CostoAdquisicion" class="form-label">Costo de Adquisicion</label>
+        <input type="text" class="form-control" name="CostoAdquisicion" placeholder="Costo de Adquisicion" value="@Model.CostoAdquisicion" />
+    </div>
+
+    <div class="mb-3">
+        <label for="CostoAlimentacion" class="form-label">Costo de Alimentacion</label>
+        <input type="text" class="form-control" name="CostoAlimentacion" placeholder="Costo de Alimentacion" value="@Model.CostoAlimentacion" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Peso" class="form-label">Peso</label>
+        <input type="text" class="form-control" name="Peso" placeholder="Peso" value="@Model.Peso" />
+    </div>
+
+    <div class="mb-3">
+        <label for="EsHibrido" class="form-label">¿Es hibrido?</label>
+        <select class="form-control" name="EsHibrido" value="@Model.EsHibrido">
+            <option value="Si">Sí</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Alta</button>
+</form>

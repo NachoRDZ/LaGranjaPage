@@ -1,0 +1,47 @@
+﻿@using Dominio.Entidades
+
+<h1>Bienvenido</h1>
+
+@if (Context.Session.GetString("rol") == "Peon")
+{
+    <h2>Mis datos</h2>
+}
+else
+{
+    <h2>Peones</h2>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Contraseña</th>
+            <th>Fecha de ingreso</th>
+            <th>Es residente</th>
+            @if (Context.Session.GetString("rol") == "Capataz")
+            {
+                <th>Tareas del peon</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Empleado item in ViewBag.Empleados)
+        {
+            if (item is Peon)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Email</td>
+                    <td>@item.Contrasenia</td>
+                    <td>@item.FechaIngreso.ToShortDateString()</td>
+                    <td>@item.MostrarEsResidente()</td>
+                    @if (Context.Session.GetString("rol") == "Capataz")
+                    {
+                        <td><a href="/Empleado/VerTareas?email=@item.Email">Ver tareas</a></td>
+                    }
+                </tr>
+            }
+        }
+    </tbody>
+</table>

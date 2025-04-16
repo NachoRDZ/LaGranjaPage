@@ -1,0 +1,31 @@
+﻿@using Dominio.Entidades
+
+<h1>Vacunas</h1>
+
+@if (@ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Tipo</th>
+            <th scope="col">Fecha Dada</th>
+            <th scope="col">Fecha Vencimiento</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (VacunaRecibida item in ViewBag.Vacunas)
+        {
+            <tr>
+                <td>@item.TipoVacuna</td>
+                <td>@item.Fecha.ToShortDateString()</td>
+                <td>@item.Vencimiento.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

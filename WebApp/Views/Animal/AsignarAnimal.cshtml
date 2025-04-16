@@ -1,0 +1,24 @@
+﻿@using Dominio.Entidades
+@model Potrero
+
+@if (@ViewBag.Mensaje != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<form method="post">
+
+    <div class="mb-3">
+        <label for="potreroString" class="form-label">Potrero</label>
+        <select name="potreroString" id="potreroString">
+            @foreach (Potrero item in ViewBag.Potreros)
+            {
+                <option value="@item.Id">@item.Id</option>
+            }
+        </select>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Asignar</button>
+</form>

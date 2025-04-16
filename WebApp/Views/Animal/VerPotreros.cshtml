@@ -1,0 +1,50 @@
+﻿@using Dominio.Entidades
+
+<nav aria-label="breadcrumb">
+    <p>
+        <a asp-action="Index">Inicio</a>
+    </p>
+</nav>
+
+<h1>Potreros</h1>
+
+@if (@ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Capacidad Maxima</th>
+            <th scope="col">Cantidad de Animales</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Potrero item in ViewBag.Potreros)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Descripcion</td>
+                <td>@item.CapacidadMax</td>
+                <td>
+                    @if (item.ObtenerCantidadAnimales() == 0)
+                    {
+                        <span>No hay animales asignados</span>
+                    }
+                    else
+                    {
+                        @item.ObtenerCantidadAnimales()
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
